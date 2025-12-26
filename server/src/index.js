@@ -2,7 +2,6 @@ import express from 'express';
 import mongoose from 'mongoose';
 import cors from 'cors';
 import dotenv from 'dotenv';
-import { MongoMemoryServer } from 'mongodb-memory-server';
 import authRoutes from './routes/auth.js';
 import waterRoutes from './routes/water.js';
 import friendsRoutes from './routes/friends.js';
@@ -43,17 +42,13 @@ app.use((err, req, res, next) => {
     res.status(500).json({ error: 'Internal server error' });
 });
 
-// MongoDB connection with in-memory server for development
+// MongoDB connection
 async function startServer() {
     try {
-        let mongoUri = process.env.MONGODB_URI;
-
-        // Use in-memory MongoDB for development
-        if (!mongoUri || mongoUri.includes('localhost')) {
-            console.log('🔧 Starting in-memory MongoDB server...');
-            const mongod = await MongoMemoryServer.create();
-            mongoUri = mongod.getUri();
-            console.log('✅ In-memory MongoDB started');
+        const mongoUri = process.env.MONGODB_URI;
+        if (!mongoUri) {
+            console.error('❌ MONGODB_URI not defined in .env');
+            process.exit(1);
         }
 
         await mongoose.connect(mongoUri);
@@ -61,16 +56,6 @@ async function startServer() {
 
         app.listen(PORT, () => {
             console.log(`🚀 Server running on http://localhost:${PORT}`);
-            console.log(`📊 API endpoints available at http://localhost:${PORT}/api`);
-            console.log(`\n📝 Available endpoints:`);
-            console.log(`   POST /api/auth/signup - Create account`);
-            console.log(`   POST /api/auth/login - Login`);
-            console.log(`   GET  /api/auth/me - Get current user`);
-            console.log(`   POST /api/water/log - Log water intake`);
-            console.log(`   GET  /api/water/today - Get today's intake`);
-            console.log(`   GET  /api/friends - Get friends list`);
-            console.log(`   GET  /api/statistics/daily - Get daily stats`);
-            console.log(`   GET  /api/statistics/weekly - Get weekly stats`);
         });
     } catch (error) {
         console.error('❌ Server startup error:', error);
