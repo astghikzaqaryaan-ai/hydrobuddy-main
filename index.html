@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="theme-color" content="#0CC0DF" />
+    <title>HydroBuddy - Your Hydration Companion</title>
+    <meta name="description" content="HydroBuddy - Track your daily water intake, set reminders, and stay hydrated with your cute blob companion!" />
+    <meta name="keywords" content="water tracker, hydration, health, fitness, reminder app" />
+    <meta name="author" content="HydroBuddy" />
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="HydroBuddy - Stay Hydrated" />
+    <meta property="og:description" content="Track your water intake with a fun, gamified experience" />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@HydroBuddy" />
+    <meta name="twitter:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
+
+    <!-- Apple PWA -->
+    <link rel="apple-touch-icon" href="/favicon.ico" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+
+    <style>
+      /* Safe area for mobile notches */
+      .safe-area-bottom {
+        padding-bottom: env(safe-area-inset-bottom, 0);
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

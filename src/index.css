@@ -1,0 +1,224 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 200 30% 98%;
+    --foreground: 210 40% 15%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 210 40% 15%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 210 40% 15%;
+
+    --primary: 187 85% 53%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 200 60% 94%;
+    --secondary-foreground: 187 85% 35%;
+
+    --muted: 200 30% 96%;
+    --muted-foreground: 210 20% 50%;
+
+    --accent: 187 75% 45%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 200 30% 90%;
+    --input: 200 30% 90%;
+    --ring: 187 85% 53%;
+
+    --radius: 1rem;
+
+    /* Custom colors for hydration theme */
+    --water: 195 100% 50%;
+    --water-light: 195 100% 85%;
+    --water-dark: 195 100% 35%;
+    --bubble: 195 100% 70%;
+    --success: 160 84% 45%;
+    --warning: 45 100% 55%;
+
+    /* Gradients */
+    --gradient-water: linear-gradient(135deg, hsl(195 100% 60%) 0%, hsl(187 85% 53%) 100%);
+    --gradient-card: linear-gradient(180deg, hsl(0 0% 100%) 0%, hsl(200 30% 98%) 100%);
+    --gradient-hero: linear-gradient(180deg, hsl(200 60% 96%) 0%, hsl(200 30% 98%) 100%);
+
+    /* Shadows */
+    --shadow-sm: 0 2px 8px -2px hsl(187 85% 53% / 0.15);
+    --shadow-md: 0 8px 24px -8px hsl(187 85% 53% / 0.2);
+    --shadow-lg: 0 16px 48px -16px hsl(187 85% 53% / 0.25);
+    --shadow-glow: 0 0 20px hsl(187 85% 53% / 0.4);
+
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .dark {
+    --background: 210 40% 8%;
+    --foreground: 200 30% 95%;
+
+    --card: 210 40% 12%;
+    --card-foreground: 200 30% 95%;
+
+    --popover: 210 40% 12%;
+    --popover-foreground: 200 30% 95%;
+
+    --primary: 187 85% 53%;
+    --primary-foreground: 210 40% 8%;
+
+    --secondary: 210 30% 18%;
+    --secondary-foreground: 187 85% 65%;
+
+    --muted: 210 30% 18%;
+    --muted-foreground: 200 20% 60%;
+
+    --accent: 187 75% 45%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 62% 50%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 210 30% 20%;
+    --input: 210 30% 20%;
+    --ring: 187 85% 53%;
+
+    --water: 195 100% 50%;
+    --water-light: 195 80% 30%;
+    --water-dark: 195 100% 60%;
+    --bubble: 195 100% 60%;
+    
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    font-family: 'Nunito', sans-serif;
+  }
+}
+
+@layer utilities {
+  .water-gradient {
+    background: var(--gradient-water);
+  }
+
+  .card-gradient {
+    background: var(--gradient-card);
+  }
+
+  .hero-gradient {
+    background: var(--gradient-hero);
+  }
+
+  .shadow-water {
+    box-shadow: var(--shadow-md);
+  }
+
+  .shadow-glow {
+    box-shadow: var(--shadow-glow);
+  }
+
+  .glass {
+    @apply bg-card/80 backdrop-blur-lg;
+  }
+}
+
+/* Water fill animation */
+@keyframes water-wave {
+  0%, 100% {
+    transform: translateX(-50%) translateY(0);
+  }
+  50% {
+    transform: translateX(-50%) translateY(-5px);
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  25% {
+    transform: translateY(-10px) rotate(3deg);
+  }
+  75% {
+    transform: translateY(-5px) rotate(-3deg);
+  }
+}
+
+@keyframes blob-pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+@keyframes bubble-rise {
+  0% {
+    transform: translateY(100%) scale(0.5);
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-100%) scale(1);
+    opacity: 0;
+  }
+}
+
+@keyframes ripple {
+  0% {
+    transform: scale(0.8);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(2);
+    opacity: 0;
+  }
+}
+
+.animate-water-wave {
+  animation: water-wave 3s ease-in-out infinite;
+}
+
+.animate-float {
+  animation: float 4s ease-in-out infinite;
+}
+
+.animate-blob-pulse {
+  animation: blob-pulse 2s ease-in-out infinite;
+}
+
+.animate-bubble-rise {
+  animation: bubble-rise 2s ease-out forwards;
+}
+
+.animate-ripple {
+  animation: ripple 0.6s ease-out forwards;
+}
